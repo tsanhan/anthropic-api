@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Parse an AWS CloudWatch log entry and extract the timestamp, log level, and message using a regular expression",
+    "format": "regex",
+    "solution_criteria": "Regex must correctly capture timestamp in ISO 8601 format, log level (INFO, ERROR, WARN, DEBUG), and the message content from a standard CloudWatch log line"
+  },
+  {
+    "task": "Write a Python function that takes an AWS S3 object key path and returns the bucket name and object name separated",
+    "format": "python",
+    "solution_criteria": "Function must correctly split S3 paths in the format 's3://bucket-name/path/to/object' and handle edge cases like trailing slashes"
+  },
+  {
+    "task": "Create a JSON policy document that allows read-only access to a specific AWS S3 bucket for IAM users",
+    "format": "json",
+    "solution_criteria": "JSON must follow AWS IAM policy syntax, include proper Statement structure with Effect, Action, and Resource fields, and restrict permissions to only GetObject and ListBucket actions"
+  }
+]
