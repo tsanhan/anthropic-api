@@ -1,5 +1,8 @@
 import json
-from xmlrpc import client
+import re
+import ast
+import json
+
 from helpers import add_user_message, add_assistant_message, chat
 
 def grade_by_model(test_case, output, client):
@@ -42,3 +45,32 @@ def grade_by_model(test_case, output, client):
     add_assistant_message(messages, "```json")
     text = chat(messages, stop_sequences=["```"], client=client)
     return json.loads(text)
+
+
+
+
+
+
+
+
+def grade_by_code(response, test_case):
+    format = test_case["format"]
+    if format == "json":
+        try:
+            json.loads(response.strip())
+            return 10
+        except json.JSONDecodeError:
+            return 0    
+    
+    elif format == "python":
+        try:
+            ast.parse(response.strip())
+            return 10
+        except SyntaxError:
+            return 0
+    else:
+        try:
+            re.compile(response.strip())
+            return 10
+        except re.error:
+            return 0
